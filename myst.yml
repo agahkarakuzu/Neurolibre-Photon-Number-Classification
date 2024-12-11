@@ -1,0 +1,78 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: 'Accurate Unsupervised Photon Counting from Transition Edge Sensor Signals'
+  thebe:
+    binder:
+      url: https://binder-preview.conp.cloud
+      repo: agahkarakuzu/NeuroLibre-Photon-Number-Classification
+      ref: HEAD
+  authors:
+    - name: Nicolas Dalbec-Constant
+      affiliations: polymtl
+      orcid: 0009-0003-3432-9816
+    - name: Guillaume Thekkadath
+      orcid: 0000-0002-4366-2245
+      affiliations: nserc
+    - name: Duncan England
+      orcid: 0000-0002-9101-6897
+      affiliations: nserc
+    - name: Benjamin Sussman
+      affiliations: nserc
+    - name: Thomas Gerrits
+      orcid: 0000-0001-8135-1811
+      affiliations: nist
+    - name: Nicolás Quesada
+      affiliations: polymtl
+      orcid: 0000-0002-0175-1688
+      corresponding: true
+      email: nicolas.quesada@polymtl.ca
+  affiliations:
+    - id: polymtl
+      institution: D\'epartement de g\'enie physique, \'Ecole Polytechnique de Montr\'eal
+      ror: https://ror.org/05f8d4e86
+      isni: 0000 0004 0435 3292
+      department: Physics Engineering
+      address: 2500 Chem. de Polytechnique
+      city: Montreal
+      region: Quebec
+      country: Canada
+      postal_code: H3T 1J4
+      phone: 1 (514) 340-4711
+    - id: nserc
+      institution: National Research Council of Canada
+      ror: https://ror.org/01h531d29
+      isni: 0000 0004 0408 2381
+      address: 100 Sussex Drive
+      city: Ottawa
+      region: Ontario
+      country: Canada
+      postal_code: K1N 5A2
+    - id: nist
+      institution: National Institute of Standards and Technology
+      ror: https://ror.org/05xpvk416
+      isni: 0000 0004 0506 8207
+      address: 100 Bureau Drive
+      city: Gaithersburg
+      region: Maryland
+      country: USA
+      postal_code: 20899
+  keywords:
+    - Tag1
+    - Tag2
+    - Tag3
+  github: https://github.com/agahkarakuzu/NeuroLibre-Photon-Number-Classification
+  banner: static/banner.jpg
+  venue: Neurolibre
+  subject: Living Preprint
+  numbering:
+    headings: true
+  doi: 10.55458/neurolibre.xxxxx
+  open_access: true
+  license: CC-BY-4.0
+  bibliography:
+    - paper.bib
+  resources:
+    - content/figure_1.ipynb
+site:
+  template: article-theme

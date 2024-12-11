@@ -1,10 +1,12 @@
 {
-"Boulder" : {
+"boulder" : {
    "src": "10.5281/zenodo.14101974",
-   "dst": "../content/Dataset/Data_Boulder"
+   "dst": "../data",
+   "project_name": "photon-number-classification/boulder"
 },
-"Ottawa" : {
+"ottawa" : {
    "src": "10.5281/zenodo.14042152",
-   "dst": "../content/Dataset/Data_Ottawa"
+   "dst": "../data",
+   "project_name": "photon-number-classification/ottawa"
 }
 }
