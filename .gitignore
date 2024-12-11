@@ -21,6 +21,7 @@ content/Sections/Results/Large/Density/*
 !content/Sections/Results/Uniform/.gitkeep
 !content/Sections/Results/Large/.gitkeep
 
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
