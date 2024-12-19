@@ -1,3 +1,2 @@
-llvm-dev
-libllvm-dev
+llvm
 clang
