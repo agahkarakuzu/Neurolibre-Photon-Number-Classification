@@ -73,6 +73,6 @@ project:
   bibliography:
     - paper.bib
   resources:
-    - content/results.ipynb
+    - content/Sections/results.ipynb
 site:
   template: article-theme
