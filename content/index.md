@@ -20,23 +20,23 @@ Clustering refers to identifying groups of similar samples inside a latent space
 
 The choice is highly inspired by a similar model previously used in the tomography of TESs in combination with PCA [@humphreys_tomography_2015]. Mixture models offer a statistical interpretation of latent spaces convenient for metrology and performance evaluation. 
 
-The mixture model gives a continuous probability density function for the position $s$ of samples given optimal parameters $\theta=\{(\omega_k, \mu_k, \Sigma_k):k=1,\cdots,K\}$. In the model, every cluster $k$ is weighted by a value $\omega_k$ (where $\sum_{k=1}^K \omega_k = 1$), and modelled by a Gaussian with mean $\mu_k$ and covariance matrices $\Sigma_k$. The individual Gaussians $\mathcal{N}$ give the cluster probability density function and the probability of observing samples in position $s$ given parameters $\theta$ are defined by
+The mixture model gives a continuous probability density function for the position $s$ of samples given optimal parameters $\theta=\{(\omega_k, \mu_k, \Sigma_k):k=1,\cdots,K\}$. In the model, every cluster $k$ is weighted by a value $\omega_k$ (where $\sum_{k=1}^K \omega_k = 1$), and modelled by a Gaussian with mean $\mu_k$ and covariance matrices $\Sigma_k$. The individual Gaussians $\mathcal{N}$ give the cluster probability density function and the probability of observing samples in position $s$ given parameters $\theta$ are defined by:
 
-$$
+:::{math}
 p(s|\theta) = \sum_{k=1}^K \omega_k \mathcal{N}(s|\mu_k , \Sigma_k).
-$$
+:::
 
 The probability density function is found through an expectation maximization algorithm (EM algorithm) that attempts to find the maximum likelihood estimate of samples following a likelihood of  
 
-$$
+:::{math}
 \mathcal{L}(\theta) = \prod_{i=1}^p \sum_{k=1}^K \omega_k \mathcal{N}(s_i|\mu_k , \Sigma_k).
-$$
+:::
 
 Numerically it is more convenient to express this problem in terms of the log-likelihood given by 
 
-$$
+:::{math}
 \ell(\theta) = \log(\mathcal{L}(\theta)) = \sum_{i=1}^p \log\left(\sum_{k=1}^K \omega_k \mathcal{N}(s_i|\mu_k , \Sigma_k)\right),
-$$
+:::
 
 where the problem can be computed in terms of sum instead of products.
 
@@ -50,9 +50,9 @@ Assessing the performance of dimensionality reduction techniques in an unsupervi
 
 We consider the probability density of photon events can be approximated from the sample's distribution in the latent space following the Gaussian mixture model. Following previous work [@humphreys_tomography_2015], the confidence $C_n$ is used as a performance metric for the resolution of photon numbers in a latent space following,
 
-$$
+:::{math}
 C_n = \int_{-\infty}^{\infty} \frac{p(s|n)^2 P(n)}{\sum_k p(s|k) P(k)} \mathrm{d} s.
-$$
+:::
 
 In this equation, $p(s|n)$ is the probability density of observing a sample in position $s$ in the latent space given it is labelled as $n$ photons. Additionally, $P(n)$ is the probability of assigning a photon number $n$. In this model, we consider that the true clusters follow a Gaussian structure inside the latent space. The confidence represents the probability of correctly labelling a sample in a given cluster in the mixture model. We note that that confidence equation describes the confidence for a one-dimensional space but can be generalized to an arbitrarily high-dimensional latent space. It is important to mention that the distances in the latent space do not necessarily have a physical meaning. The separation must only be interpreted as our capacity to distinguish clusters, and the confidence translates this concept into a probabilistic framework.
 
@@ -62,18 +62,60 @@ Experimental data from previous work at the National Institute of Standards and 
 
 Instead of directly using these distributions, we construct two synthetic datasets (made of real traces) that follow a close-to-uniform and close-to-geometric distributions $P(n)$. These datasets are labelled as Synthetic Uniform and Synthetic Geometric. Furthermore, for both of these datasets, a training and testing set were generated. Considering randomly selecting a portion of the samples in each experiment is equivalent to varying the weight $w_{{\langle n \rangle}}$ of a given Poisson distribution $P_{{\langle n \rangle}}(n)$ inside a mixture of Poisson distributions. The total expected distribution $P(n)$ can be described by
 
-$$
+:::{math}
 P(n) = \frac{1}{\xi} \sum_{\langle n \rangle\in \bar{N}} w_{\langle n \rangle} P_{\langle n \rangle}(n),
-$$
+:::
 
 with
 
-$$
+:::{math}
 \xi = \sum_{\langle n \rangle \in \bar{N}} w_{\langle n \rangle},
-$$
+:::
 
 and where $\bar{N}$ is the set of available mean photon numbers $\langle n \rangle$. With this construction, the expected photon number distribution is a mixture of Poisson distributions. The choice of a uniform distribution is motivated by the desire to make the labelling task difficult by maximizing the distribution's entropy. In other words, for every sample in a perfectly uniform distribution, the method would have equal chances of guessing every class. The choice of testing a geometric distribution comes from the desire to precisely measure thermal optical sources that follow a geometric photon number distribution. Also, distributions with a long tail can be difficult to process for certain methods since fewer examples are present in some classes (imbalanced dataset).
 
 We add that these expected distributions are used as $P(n)$ in the computation of the confidence. The predictive methods are trained with the training set, and the analysis of performance metrics is done by feeding the test set to the trained methods. In the case of non-predictive and basic feature methods, the test set is directly used. The training and test datasets contain a total of $u=30\,550$ traces of size $t=350$ (first $350$ values of the $8192$ available time steps). We note that most of the weights $w_{\langle n \rangle}$ are set to zero because of the number of available Poisson distributions in the desired photon number range is small, making the synthetic distribution not perfectly uniform.
 
 To validate the hypothesis that more training data can help parametric implementations of t-SNE and UMAP resemble there non-parametric equivalent, we also use a larger dataset named Synthetic Large that was created using signals generated by TESs at the National Research Council Canada (NRC) in Ottawa. The data was generated by tuning the attenuation of a laser and measuring $u=100 \,000$ signals for each of these coherent sources.
+
+# Results
+
+We present the confidence result for the different datasets and considering a variety of dimensionality reduction techniques.
+
+## Synthetic Uniform
+
+:::{figure} #fig1-cell
+:label: fig1
+:align: center
+
+Figure caption goes here.
+:::
+
+## Synthetic Geometric
+
+:::{figure} #fig2-cell
+:label: fig2
+:align: center
+
+Figure caption goes here.
+:::
+
+## Effect of Gaussian Mixture
+
+Considering the embedding created by t-SNE is better modelled by a generalized gaussian function. To demonstrate the impact of the clustering function, we present the confidence for t-SNE modelled using a gaussian vs generalized gaussian model.
+
+:::{figure} #fig3-cell
+:label: fig3
+:align: center
+
+Figure caption goes here.
+:::
+
+## Synthetic Large
+
+:::{figure} #fig4-cell
+:label: fig4
+:align: center
+
+Figure caption goes here.
+:::
