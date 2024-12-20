@@ -1,4 +1,4 @@
 format: jb-book
 root: content/index.md
 chapters:
-  - file: content/Sections/results.ipynb
+  - file: content/results.ipynb
